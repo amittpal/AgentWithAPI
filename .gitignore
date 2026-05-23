@@ -1,0 +1,60 @@
+.vs/
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# ASP.NET Scaffolding
+wwwroot/lib/
+
+# NuGet
+*.nupkg
+packages/
+
+# Publish
+publish/
+
+# Entity Framework
+*.dbmdl
+
+# Dotnet temporary files
+project.lock.json
+project.fragment.lock.json
+
+# Logs
+*.log
+
+# Node / Angular
+node_modules/
+# Angular build output
+dist/
+dist-*/
+.angular/
+
+# Temporary
+tmp/
+temp/
+
+# NPM/Yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+coverage/
+
+# Misc
+.history

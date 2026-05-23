@@ -1,0 +1,52 @@
+<div class="container py-5">
+  <div class="text-center mb-4">
+    <span class="badge bg-primary mb-2">Student Agent</span>
+    <h1 class="display-5 fw-bold">Student Chat</h1>
+    <p class="text-secondary fs-5">Ask the student agent to add, delete, or list student names. Keep the session unless you start a new chat.</p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm border-0 overflow-hidden">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+              <h5 class="card-title mb-1">Student chatbot</h5>
+              <p class="text-muted mb-0">Session: <strong>{{ sessionId() ?? 'New session' }}</strong></p>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm" (click)="startNewChat()">New Chat</button>
+          </div>
+
+          <div class="chat-window p-3 mb-3 bg-light rounded-4 border">
+            <div *ngIf="messages().length === 0" class="text-center text-muted py-5">
+              Your conversation will appear here. Try: "Add student Alice" or "Show all student names".
+            </div>
+
+            <div *ngFor="let message of messages()" class="d-flex mb-3" [ngClass]="{ 'justify-content-end': message.author === 'user' }">
+              <div class="chat-bubble" [class.user]="message.author === 'user'" [class.bot]="message.author === 'bot'">
+                <small class="text-uppercase text-muted d-block mb-1">{{ message.author }}</small>
+                <div>{{ message.text }}</div>
+              </div>
+            </div>
+          </div>
+
+          <form class="row g-2" (ngSubmit)="sendMessage()">
+            <div class="col-12 col-lg-9">
+              <label for="messageInput" class="visually-hidden">Enter message</label>
+              <input id="messageInput" name="message" class="form-control form-control-lg" placeholder="Type your question here..." [(ngModel)]="input" [disabled]="loading()" />
+            </div>
+            <div class="col-12 col-lg-3 d-grid">
+              <button type="button" class="btn btn-primary btn-lg" (click)="onActionClick()" [disabled]="!loading() && !input().trim()">
+                {{ loading() ? 'Stop' : 'Send' }}
+              </button>
+            </div>
+          </form>
+
+          <div class="alert alert-info mt-4 mb-0" role="status">
+            {{ status() }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
